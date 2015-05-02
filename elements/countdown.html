@@ -1,0 +1,87 @@
+<link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="countdown-element">
+    <template>
+      <h3 id="stepname">{{title}}</h3>
+      <div id="temp">{{temp}} F</div>
+      <div id="countDown">{{count}}</div>
+      
+      <core-ajax id="ajax"
+        auto
+        url="../api/procedures.json"
+        on-core-response="{{handleResponse}}"
+        handleAs="json">
+      </core-ajax>
+
+    </template>
+    <script>
+      Polymer('countdown-element', {
+        ready : function(){
+          console.log('ready');
+          this.nextCount.isCounting = false;
+        },
+        checkStatus : function(){
+          console.log('fired');
+          if(this.isCounting === false){
+
+            if(this.currStep < this.stepCount){ 
+              this.isCounting = true;
+              this.nextCount();
+            } else {
+              //done!
+            }
+          } 
+            
+          },
+        handleResponse: function(){
+         
+          this.procedureData = this.$.ajax.response;
+          this.procedureData = this.procedureData.burgers;
+          this.stepCount = this.procedureData.length;
+          this.loadData(0);
+        },
+        loadData: function(step){
+          this.count = this.procedureData[step].time;
+          this.title = this.procedureData[step].title;
+          this.temp = this.procedureData[step].temp;
+          
+        },
+
+        pause : function () {
+          if(this.isCounting === true){
+            this.isCounting = false;
+          }
+        },
+        nextCount : function(){
+
+          if(this.isCounting === true){
+           this.count--;
+          
+            if(this.count > 0){
+              this.async(this.nextCount, null, 1000); 
+            } else {
+              //grab the next count value in from the json
+              this.isCounting = false;
+              //todo 
+              //make this a promise?
+               
+              if(this.currStep < this.stepCount -1){
+                this.currStep = this.currStep+1;
+                this.loadData(this.currStep);
+                 
+              } else {
+                //your food is done!
+              }
+             
+            }
+          }
+        },
+        currStep: 0,
+        procedureData: "",
+        stepCount: 0,
+        isCounting : false,
+        count: 0
+      });
+
+    </script>
+  </polymer-element>
