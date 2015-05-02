@@ -9,11 +9,11 @@
 		{"title" : "cook", "time" :"5", "temp": "375"}
 	],	
 	"ribeye" : [
-		{"title":"sear", "time": "5", "temp":"550"},
+		{"title":"sear", "time": "240", "temp":"550"},
 		{"title": "flip", "time": "0", "temp":"0"},
-		{"title":"sear", "time": "5", "temp":"550"},
+		{"title":"sear", "time": "240", "temp":"550"},
 		{"title": "flip", "time": "0", "temp":"0"},
-		{"title" : "cook", "time" :"5", "temp": "375"}
+		{"title" : "cook", "time" :"600", "temp": "375"}
 	],
 	"filet mignion" : [
 		{"title":"sear", "time": "5", "temp":"550"},
