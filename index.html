@@ -13,18 +13,24 @@
   
   <button id="start" onclick="clickedButton()">Next</button>
   <button id="pause" onclick="clickedPause()">Pause</button>
+  <button id="reset" onclick="clickedReset()">Reset</button>
 
   <script>
-    
+    countdown = document.querySelector('countdown-element');
+
     var clickedButton = function() {
 
-      var countdown = document.querySelector('countdown-element');
+      //var countdown = document.querySelector('countdown-element');
       countdown.addEventListener('clicked-start', countdown.checkStatus());
     }
 
     var clickedPause = function() {
-      var countdown = document.querySelector('countdown-element');
+      //var countdown = document.querySelector('countdown-element');
       countdown.addEventListener('clicked-pause', countdown.pause());
+    }
+
+    var clickedReset = function() {
+      countdown.addEventListener('clicked-reset', countdown.reset());
     }
   </script>
 

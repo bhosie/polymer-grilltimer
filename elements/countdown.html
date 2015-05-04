@@ -2,7 +2,8 @@
 
 <polymer-element name="countdown-element">
     <template>
-      <h3 id="stepname">{{title}}</h3>
+       <h3 id="procedureName">{{procedureName}}</h3>
+      <div id="stepname">Step {{hrStepNum}}: {{title}}</div>
       <div id="temp">{{temp}} F</div>
       <div id="countDown">{{count}}</div>
       
@@ -30,13 +31,26 @@
             } else {
               //done!
             }
-          } 
+          } else {
+            //assume we want to skip to the next step
+            this.currStep++;
+            if (this.currStep == this.stepCount){ //last step, reset.
+              this.currStep = 0;
+            }
+            this.hrStepNum = this.currStep + 1;
+            this.loadData(this.currStep);
+          }
             
           },
         handleResponse: function(){
-         
+          var procedure = "test"; //for quick debugging now
           this.procedureData = this.$.ajax.response;
+<<<<<<< HEAD
           this.procedureData = this.procedureData.ribeye;
+=======
+          this.procedureData = this.procedureData[procedure];
+           this.procedureName = procedure;
+>>>>>>> master
           this.stepCount = this.procedureData.length;
           this.loadData(0);
         },
@@ -48,9 +62,13 @@
         },
 
         pause : function () {
-          if(this.isCounting === true){
             this.isCounting = false;
-          }
+        },
+        reset : function() {
+          this.isCounting = false;
+          this.currStep = 0;
+          this.hrStepNum = 1;
+          this.loadData(this.currStep);
         },
         nextCount : function(){
 
@@ -66,7 +84,8 @@
               //make this a promise?
                
               if(this.currStep < this.stepCount -1){
-                this.currStep = this.currStep+1;
+                this.currStep++;
+                this.hrStepNum = this.currStep + 1;
                 this.loadData(this.currStep);
                  
               } else {
@@ -77,6 +96,7 @@
           }
         },
         currStep: 0,
+        hrStepNum: 1, //'human readable'
         procedureData: "",
         stepCount: 0,
         isCounting : false,
