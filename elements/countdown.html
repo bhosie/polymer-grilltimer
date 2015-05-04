@@ -45,12 +45,8 @@
         handleResponse: function(){
           var procedure = "test"; //for quick debugging now
           this.procedureData = this.$.ajax.response;
-<<<<<<< HEAD
-          this.procedureData = this.procedureData.ribeye;
-=======
           this.procedureData = this.procedureData[procedure];
-           this.procedureName = procedure;
->>>>>>> master
+          this.procedureName = procedure;
           this.stepCount = this.procedureData.length;
           this.loadData(0);
         },
