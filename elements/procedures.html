@@ -1,7 +1,9 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+
 <polymer-element name="procedures-element">
 	<template>
-		<select id="procedure-selector">
-			<option template repeat="{{countdown.pNames}}"></option>
+		<select id="procedureSelector" on-change="{{changeProcedure}}">
+			<option template repeat="{{p in pNames}}">{{p}}</option>
 		</select>
 	</template>
 
@@ -9,8 +11,13 @@
 		 Polymer('procedures-element', {
 		 	ready : function(){
           		console.log('procedures ready');
-          		console.log(countdown.pNames);
+          		
         	},
+        	changeProcedure: function() {
+
+        		countdownSel.procedureName = this.$.procedureSelector.value;
+        		countdownSel.setProcedure(countdownSel.procedureName);
+        	}
 		 });
 	</script>
 </polymer-element>

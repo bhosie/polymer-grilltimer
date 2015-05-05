@@ -4,35 +4,40 @@
     <!-- 1. Load platform support before any code that touches the DOM. -->
     <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
     <!-- 2. Load the component using an HTML Import -->
-     <link rel="import" href="bower_components/polymer/polymer.html">
+     
       <link rel="import" href="elements/countdown.html">
       <link rel="import" href="elements/procedures.html">
+      <link rel="import" href="elements/binding1.html">
+
   </head>
   <body>
     <procedures-element></procedures-element>
    <countdown-element></countdown-element>
+
   
   <button id="start" onclick="clickedButton()">Next</button>
   <button id="pause" onclick="clickedPause()">Pause</button>
   <button id="reset" onclick="clickedReset()">Reset</button>
 
+  <td-model></td-model>
+   <my-app></my-app>
+
   <script>
-    countdown = document.querySelector('countdown-element');
+    var countdownSel = document.querySelector('countdown-element');
+    var proceduresSel = document.querySelector('procedures-element');
 
     var clickedButton = function() {
-
-      //var countdown = document.querySelector('countdown-element');
-      countdown.addEventListener('clicked-start', countdown.checkStatus());
+      countdownSel.addEventListener('clicked-start', countdownSel.checkStatus());
     }
 
     var clickedPause = function() {
-      //var countdown = document.querySelector('countdown-element');
-      countdown.addEventListener('clicked-pause', countdown.pause());
+      countdownSel.addEventListener('clicked-pause', countdownSel.pause());
     }
 
     var clickedReset = function() {
-      countdown.addEventListener('clicked-reset', countdown.reset());
+      countdownSel.addEventListener('clicked-reset', countdownSel.reset());
     }
+
   </script>
 
   </body>
