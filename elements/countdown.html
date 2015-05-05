@@ -45,6 +45,7 @@
         handleResponse: function(){
           var procedure = "test"; //for quick debugging now
           this.procedureData = this.$.ajax.response;
+          this.pNames = Object.keys(this.procedureData); console.log(this.pNames)
           this.procedureData = this.procedureData[procedure];
           this.procedureName = procedure;
           this.stepCount = this.procedureData.length;

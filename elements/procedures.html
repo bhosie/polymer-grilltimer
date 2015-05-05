@@ -1,0 +1,16 @@
+<polymer-element name="procedures-element">
+	<template>
+		<select id="procedure-selector">
+			<option template repeat="{{pNames}}"></option>
+		</select>
+	</template>
+
+	<script>
+		 Polymer('procedures-element', {
+		 	ready : function(){
+          		console.log('procedures ready');
+          		console.log(countdown.pNames);
+        	},
+		 });
+	</script>
+</polymer-element>
