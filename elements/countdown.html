@@ -1,4 +1,4 @@
-<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/core-ajax/core-ajax.html">
 
 <polymer-element name="countdown-element" attributes="pNames">
@@ -97,6 +97,8 @@
                  
               } else {
                 //your food is done!
+                audio = new Audio('../mp3/pigs.mp3');
+                audio.play();
               }
              
             }
