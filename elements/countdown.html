@@ -59,6 +59,7 @@
           this.procedureData = this.procedureList[name];
           this.stepCount = this.procedureData.length;
           this.loadData(0);
+          this.reset();
         },
         loadData: function(step){
           this.isCounting = false;
@@ -97,7 +98,7 @@
                  
               } else {
                 //your food is done!
-                audio = new Audio('../mp3/pigs.mp3');
+                audio = new Audio('/sounds/bell.mp3');
                 audio.play();
               }
              
